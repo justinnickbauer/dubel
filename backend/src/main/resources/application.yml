@@ -1,0 +1,19 @@
+app:
+  name: blindjogging
+
+jwt:
+  header: Authorization
+  expires_in: 300
+  mobile_expires_in: 600
+  secret: dieFirmaDieKeineFirmaIst
+
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bjzh
+    username: root
+    password:
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
