@@ -1,0 +1,54 @@
+<div class="w-full max-w-3xl">
+
+    <form [formGroup]="securityForm">
+        <div class="w-full">
+            <div class="text-xl">Ändere Dein Passwort</div>
+            <div class="text-secondary">Du kannst Dein Passwort nur zweimal innerhalb von 24 Stunden ändern.</div>
+        </div>
+        <fuse-alert
+            class="mt-8 -mb-4"
+            *ngIf="showAlert"
+            [appearance]="'outline'"
+            [showIcon]="true"
+            [type]="alert.type"
+            [@shake]="alert.type === 'error'">
+            {{alert.message}}
+        </fuse-alert>
+        <div class="grid sm:grid-cols-4 gap-6 w-full mt-8">
+            <div class="sm:col-span-4">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Neues Passwort</mat-label>
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:key'"
+                        matPrefix></mat-icon>
+                    <input
+                        [formControlName]="'newPassword'"
+                        type="password"
+                        matInput>
+                </mat-form-field>
+                <div class="mt-1 text-md text-hint">Mindestens 8 Zeichen. Muss Zahlen, Buchstaben und Sonderzeichen enthalten.</div>
+            </div>
+        </div>
+
+        <div class="my-10 border-t"></div>
+
+        <div class="flex items-center justify-end">
+            <button
+                mat-stroked-button
+                type="button"
+                (click)="cancel()">
+                Abbrechen
+            </button>
+            <button
+                class="ml-4"
+                mat-flat-button
+                type="button"
+                [disabled] = "securityForm.pristine"
+                (click)="openConfirmationDialog()"
+                [color]="'primary'">Speichern
+            </button>
+        </div>
+    </form>
+
+</div>

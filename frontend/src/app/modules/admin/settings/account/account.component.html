@@ -1,0 +1,106 @@
+<div class="w-full max-w-3xl">
+
+    <form [formGroup]="accountForm"
+          #accountNgForm="ngForm">
+
+        <div class="w-full">
+            <div class="text-xl">Dein Profil</div>
+            <div class="text-secondary">Bearbeite hier Deine persönlichen informationen.</div>
+        </div>
+        <fuse-alert
+            class="mt-8 -mb-4"
+            *ngIf="showAlert"
+            [appearance]="'outline'"
+            [showIcon]="true"
+            [type]="alert.type"
+            [@shake]="alert.type === 'error'">
+            {{alert.message}}
+        </fuse-alert>
+        <div class="grid sm:grid-cols-4 gap-6 w-full mt-8">
+            <div class="sm:col-span-4">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Vorname</mat-label>
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:user'"
+                        matPrefix></mat-icon>
+                    <input
+                        [formControlName]="'firstName'"
+                        matInput>
+                </mat-form-field>
+            </div>
+            <div class="sm:col-span-4">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Nachname</mat-label>
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:user'"
+                        matPrefix></mat-icon>
+                    <input
+                        [formControlName]="'lastName'"
+                        matInput>
+                </mat-form-field>
+            </div>
+            <div class="sm:col-span-4">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Email</mat-label>
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:mail'"
+                        matPrefix></mat-icon>
+                    <input
+                        [formControlName]="'email'"
+                        matInput
+                        readonly
+                        [attr.disabled] = "true">
+                </mat-form-field>
+            </div>
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Telefonnummer</mat-label>
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:phone'"
+                        matPrefix></mat-icon>
+                    <input
+                        [formControlName]="'phoneNumber'"
+                        matInput>
+                </mat-form-field>
+            </div>
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Letzter Passwort Reset</mat-label>
+                    <mat-icon
+                        class="icon-size-5"
+                        [svgIcon]="'heroicons_solid:lock-open'"
+                        matPrefix></mat-icon>
+                    <input
+                        [formControlName]="'lastPasswordResetDate'"
+                        matInput
+                        [attr.disabled] = "true"
+                        readonly>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="mt-11 mb-10 border-t"></div>
+
+        <div class="flex items-center justify-end">
+            <button
+                mat-stroked-button
+                type="button"
+                (click)="cancel()">
+                Abbrechen
+            </button>
+            <button
+                class="ml-4"
+                mat-flat-button
+                type="button"
+                [disabled] = "accountForm.pristine"
+                (click)="updateUser()"
+                [color]="'primary'">Speichern
+            </button>
+        </div>
+    </form>
+
+</div>
